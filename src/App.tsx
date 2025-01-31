@@ -3,8 +3,9 @@ import getMessage from './messages';
 import Loading from './loading/Loading';
 import './App.css';
 
+const { text = '', image = '' } = getMessage();
+
 function App() {
-    const { text = '', image = '' } = getMessage();
     const [ready, setReady] = useState<boolean>(false);
 
     useEffect(() => {
@@ -14,9 +15,9 @@ function App() {
     }, []);
 
     return (
-        <div>
+        <div className="App">
             <div className={ready ? 'hide' : 'show'}><Loading /></div>
-            <div className={ready ? 'show' : 'hidden'}>
+            <div className={[ready ? 'show' : 'hidden', 'App-content'].join(' ')}>
                 <img src={image} alt="Carta Tarot" />
                 <h2>{text}</h2>
             </div>

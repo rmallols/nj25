@@ -5,6 +5,7 @@
 
 body {
     --color: rgb(160, 148, 84);
+    --padding: 15px;
     margin: 0 auto;
     max-width: 600px;
     font-family: tarotheque;
@@ -13,8 +14,8 @@ body {
     white-space: pre-line;  
     background-color: black;
     color: var(--color);  
-    min-height: 100vh;
-    padding: 15px;
+    height: 100vh;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;    
@@ -42,6 +43,18 @@ img {
 .hidden  {
     opacity: 0;
 }
+
+#root {
+    height: 100%;
+}
+
+.App-content {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    padding: var(--padding);
+}
+
 
 @keyframes show {
     from {opacity: 0;}
