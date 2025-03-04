@@ -7,7 +7,7 @@ body {
     --color: rgb(160, 148, 84);
     --padding: 15px;
     margin: 0 auto;
-    max-width: 600px;
+    width: 100%;
     font-family: tarotheque;
     font-size: 1.25rem;
     text-align: center;
@@ -23,6 +23,11 @@ body {
 
 img {
     max-width: 100%;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
 }
 
 /* .show {
@@ -42,21 +47,26 @@ img {
 
 .hidden  {
     opacity: 0;
-}
+}*/
 
 #root {
+    width: 100%;
     height: 100%;
 }
 
 .App-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     height: 100%;
     overflow-y: auto;
     padding: var(--padding);
+    box-sizing: border-box;
 }
 
 
-@keyframes show {
+/*@keyframes show {
     from {opacity: 0;}
     to {opacity: 1;}
 }
@@ -77,90 +87,34 @@ img {
       transform: rotate(0) translateX(0);
     }
   }
-  
-  .card-wrapper {
-    display: flex;
-    flex-direction: row;
-    
-    height: 350px;
-  }
-  
+
 .card-list {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    justify-content: center;
+    height: 50%;
     width: 100%;
-    max-height: 100%;
-    height: 350px;
-
-    margin: 0;
-    padding: 30px;
-
-    list-style: none;
+    position: relative;    
 }
 
 .card-list__item {
     position: absolute;
     animation: none;
     animation-fill-mode: forwards;
-
-    &[data-card="0"] {
-        z-index: 6;
-        margin-top: 0;
-    }
-
-    &[data-card="1"] {
-        z-index: 5;
-        margin-top: 4px;
-    }
-
-    &[data-card="2"] {
-        z-index: 4;
-        margin-top: 8px;
-    }
-
-    .is-animated & {
-        &[data-card="0"] {
-            animation: shuffle 1s ease-in-out 0s 1 normal;
-            z-index: 2;
-            transition: z-index 0s ease-in-out 0.5s;
-        }
-
-        &[data-card="1"] {
-            animation: shuffle 1s ease-in-out 1s 1 normal; 
-            z-index: 1;
-            transition: z-index 0s ease-in-out 1.5s;
-        }
-
-        &[data-card="2"] {
-            animation: shuffle 1s ease-in-out 2s 1 normal;
-            z-index: 0;
-            transition: z-index 0s ease-in-out 2.5s;
-        }
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    &.is-animating {
+        animation: shuffle 1s ease-in-out;
+        transition: z-index 0s ease-in-out;
     }
 }
 
 .card {
-    display: flex;
-    max-width: 100%;
-    width: 150px;
-    max-height: 100%;
-    height: 250px;
-    padding: 30px;
-    border-radius: 15px;
+    /* display: flex; */
+    /* width: 50%; */
+    /* max-height: 100%; */
+    /* height: 250px; */
+    /* border-radius: 15px; */
     box-shadow: 0 1px 3px 0 #222;
-    background: #555;
-}
-
-[data-card="0"] .card {
-    background: #a37;
-}
-
-[data-card="1"] .card {
-    background: #73a;
-}
-
-[data-card="2"] .card {
-    background: #3a7;
+    /* background: #555; */
 }

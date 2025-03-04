@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import getMessage from './messages';
+import BackImage from './images/back.jpg';
 import Loading from './loading/Loading';
 import './App.css';
 
 const { text = '', image = '' } = getMessage();
+
+const TOTAL_CARDS = 6;
 
 function App() {
 
@@ -27,30 +30,38 @@ function App() {
     //     </div>
     // );
 
-    const cardList = useRef<HTMLUListElement>(null);
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
+    const [cards, setCards] = useState<Array<void>>([]);
 
     useEffect(() => {
+        setCards(new Array(TOTAL_CARDS).fill(''));
         setTimeout(() => {
             setIsAnimating(true);
-        }, 1000);        
+        }, 1000);
         setTimeout(() => {
             setIsAnimating(false);
         }, 50000);
     }, []);
 
     return (
-        <div className="card-wrapper">
-            <ul className={['card-list', isAnimating ? 'is-animated' : null].join(' ')} ref={cardList}>
-                <li className="card-list__item" data-card="0">
-                    <div className="card"></div>
-                </li>
-                <li className="card-list__item" data-card="1">
-                    <div className="card"></div>
-                </li>
-                <li className="card-list__item" data-card="2">
-                    <div className="card"></div>
-                </li>
+        <div className="App-content">
+            <ul className="card-list">
+                {cards.map((_, index) =>
+                    <li
+                        className={['card-list__item', isAnimating ? 'is-animating' : null].join(' ')}
+                        style={{
+                            zIndex: isAnimating ?
+                                TOTAL_CARDS - index - 1 :
+                                2 * TOTAL_CARDS - index,
+                            animationDelay: `${index}s`,
+                            transitionDelay: `${index + 0.5}s`,
+                            marginTop: `${4 + index}px`
+                        }}
+                        data-card={index}
+                    >
+                        <img src={BackImage} className="card" />
+                    </li>
+                )}
             </ul>
         </div>
     );
