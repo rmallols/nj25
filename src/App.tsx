@@ -6,7 +6,7 @@ import './App.css';
 
 const { text = '', image = '' } = getMessage();
 
-const TOTAL_CARDS = 3;
+const TOTAL_CARDS = Math.round(Math.random() * 6) + 1;
 const TIME = 1 * TOTAL_CARDS;
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
     const [isZooming, setIsZooming] = useState<boolean>(false);
     const [flipCardIndex, setFlipCardIndex] = useState<number>();
     const [cards, setCards] = useState<Array<void>>([]);
+    const [animationsDirection, setAnimationsDirection] = useState<Array<'left' | 'right'>>([]);
 
     useEffect(() => {
         setCards(new Array(TOTAL_CARDS).fill(''));
@@ -45,10 +46,16 @@ function App() {
                 setFlipCardIndex(0);
                 setTimeout(() => {
                     setIsZooming(true);
-                }, 1500);                
+                }, 1500);
             }, TIME * 1000);
         }, 1000);
     }, []);
+
+    useEffect(() => {
+        setAnimationsDirection(cards.map((_) => (
+            Math.round(Math.random()) < 1 ? 'left' : 'right'
+        )));
+    }, [cards]);
 
     return (
         <div className="App-content">
@@ -57,7 +64,11 @@ function App() {
                     <li
                         className={[
                             'card-list__item',
-                            isAnimating ? 'is-animating' : null,
+                            isAnimating ?
+                                animationsDirection[index] === 'left'
+                                    ? 'is-animating-left'
+                                    : 'is-animating-right'
+                                : null,
                             index === flipCardIndex ? 'is-flipping' : null,
                             isZooming ? 'is-zooming' : null,
                         ].join(' ')}
@@ -74,9 +85,11 @@ function App() {
                         <div className="flip-card-front">
                             <img src={BackImage} className="card" />
                         </div>
-                        <div className="flip-card-back">
-                            <img src={image} className="card" />
-                        </div>
+                        {!index &&
+                            <div className="flip-card-back">
+                                <img src={image} className="card" />
+                            </div>
+                        }
                     </li>
                 )}
             </ul>

@@ -78,7 +78,19 @@ ul {
     to {opacity: 0;}
 } */
 
-@keyframes shuffle {
+@keyframes shuffle-left {
+    0% {
+      transform: rotate(0) translateX(0) scale(1);
+    }
+    50% {
+      transform: rotate(-5deg) translateX(-105%) scale(0.96);
+    }
+    100% {
+      transform: rotate(0) translateX(0);
+    }
+}
+
+@keyframes shuffle-right {
     0% {
       transform: rotate(0) translateX(0) scale(1);
     }
@@ -88,7 +100,7 @@ ul {
     100% {
       transform: rotate(0) translateX(0);
     }
-  }
+}
 
 .card-list {
     display: flex;
@@ -110,10 +122,15 @@ ul {
     width: 70%;
     transition: transform 0.8s;
     transform-style: preserve-3d;    
-    &.is-animating {
-        animation: shuffle 1s ease-in-out;
+    &.is-animating-left {
+        animation: shuffle-left 1s ease-in-out;
         transition: z-index 0s ease-in-out;
-    }
+
+    }    
+    &.is-animating-right {
+        animation: shuffle-right 1s ease-in-out;
+        transition: z-index 0s ease-in-out;
+    }        
 }
 
 @media screen and (orientation: landscape) {
