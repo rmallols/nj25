@@ -91,9 +91,10 @@ ul {
 .card-list {
     display: flex;
     justify-content: center;
-    height: 50%;
+    height: 100%;
     width: 100%;
-    position: relative;    
+    position: relative;
+    perspective: 1000px;
 }
 
 .card-list__item {
@@ -102,11 +103,30 @@ ul {
     animation-fill-mode: forwards;
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 100%;
+    width: 70%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;    
     &.is-animating {
         animation: shuffle 1s ease-in-out;
         transition: z-index 0s ease-in-out;
     }
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    /* height: 100%; */
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+.card-list__item.is-flipping {
+    transform: rotateY(180deg);
 }
 
 .card {
@@ -115,6 +135,7 @@ ul {
     /* max-height: 100%; */
     /* height: 250px; */
     /* border-radius: 15px; */
+    /* height: 100%; */
     box-shadow: 0 1px 3px 0 #222;
     /* background: #555; */
 }

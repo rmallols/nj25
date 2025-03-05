@@ -6,7 +6,8 @@ import './App.css';
 
 const { text = '', image = '' } = getMessage();
 
-const TOTAL_CARDS = 6;
+const TOTAL_CARDS = 3;
+const TIME = 1 * TOTAL_CARDS;
 
 function App() {
 
@@ -31,16 +32,19 @@ function App() {
     // );
 
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
+    const [flipCardIndex, setFlipCardIndex] = useState<number>();
     const [cards, setCards] = useState<Array<void>>([]);
 
     useEffect(() => {
         setCards(new Array(TOTAL_CARDS).fill(''));
         setTimeout(() => {
             setIsAnimating(true);
+            setTimeout(() => {
+                setIsAnimating(false);
+                setFlipCardIndex(0);
+                console.log('XXX COMPLETED!!!');
+            }, TIME * 1000);
         }, 1000);
-        setTimeout(() => {
-            setIsAnimating(false);
-        }, 50000);
     }, []);
 
     return (
@@ -48,7 +52,11 @@ function App() {
             <ul className="card-list">
                 {cards.map((_, index) =>
                     <li
-                        className={['card-list__item', isAnimating ? 'is-animating' : null].join(' ')}
+                        className={[
+                            'card-list__item',
+                            isAnimating ? 'is-animating' : null,
+                            index === flipCardIndex ? 'is-flipping' : null,
+                        ].join(' ')}
                         style={{
                             zIndex: isAnimating ?
                                 TOTAL_CARDS - index - 1 :
@@ -59,7 +67,12 @@ function App() {
                         }}
                         data-card={index}
                     >
-                        <img src={BackImage} className="card" />
+                        <div className="flip-card-front">
+                            <img src={BackImage} className="card" />
+                        </div>
+                        <div className="flip-card-back">
+                            <img src={image} className="card" />
+                        </div>
                     </li>
                 )}
             </ul>
