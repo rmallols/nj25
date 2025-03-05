@@ -32,6 +32,7 @@ function App() {
     // );
 
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
+    const [isZooming, setIsZooming] = useState<boolean>(false);
     const [flipCardIndex, setFlipCardIndex] = useState<number>();
     const [cards, setCards] = useState<Array<void>>([]);
 
@@ -42,7 +43,9 @@ function App() {
             setTimeout(() => {
                 setIsAnimating(false);
                 setFlipCardIndex(0);
-                console.log('XXX COMPLETED!!!');
+                setTimeout(() => {
+                    setIsZooming(true);
+                }, 1500);                
             }, TIME * 1000);
         }, 1000);
     }, []);
@@ -56,6 +59,7 @@ function App() {
                             'card-list__item',
                             isAnimating ? 'is-animating' : null,
                             index === flipCardIndex ? 'is-flipping' : null,
+                            isZooming ? 'is-zooming' : null,
                         ].join(' ')}
                         style={{
                             zIndex: isAnimating ?
