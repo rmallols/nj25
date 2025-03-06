@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import getMessage from './messages';
 import BackImage from './images/back.jpg';
+import FrontImage from './images/front.jpg';
 import Loading from './loading/Loading';
+import NJ75Image from './images/nj75.png';
 import './App.css';
 
 const { text = '', image = '' } = getMessage();
@@ -83,11 +85,13 @@ function App() {
                         data-card={index}
                     >
                         <div className="flip-card-front">
-                            <img src={BackImage} className="card" />
+                            <img src={BackImage} className="cover-image" />
+                            <img src={NJ75Image} className="actual-image is-back" />
                         </div>
                         {!index &&
                             <div className="flip-card-back">
-                                <img src={image} className="card" />
+                                <img src={FrontImage} className="cover-image" />
+                                <img src={image} className="actual-image is-front" />
                             </div>
                         }
                     </li>
