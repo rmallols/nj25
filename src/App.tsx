@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import getMessage from './messages';
 import BackImage from './images/back.jpg';
 import FrontImage from './images/front.jpg';
@@ -35,6 +35,7 @@ function App() {
 
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
     const [isZooming, setIsZooming] = useState<boolean>(false);
+    const [isDescribing, setIsDescribing] = useState<boolean>(false);
     const [flipCardIndex, setFlipCardIndex] = useState<number>();
     const [cards, setCards] = useState<Array<void>>([]);
     const [animationsDirection, setAnimationsDirection] = useState<Array<'left' | 'right'>>([]);
@@ -48,6 +49,9 @@ function App() {
                 setFlipCardIndex(0);
                 setTimeout(() => {
                     setIsZooming(true);
+                    setTimeout(() => {
+                        setIsDescribing(true);
+                    }, 1500);
                 }, 1500);
             }, TIME * 1000);
         }, 1000);
@@ -59,9 +63,24 @@ function App() {
         )));
     }, [cards]);
 
+    // useEffect(() => {
+    //     setTimeout(function () {
+    //         // if (ref != null) {
+    //         //     ref?.requestFullscreen();
+    //         // }
+    //     // window.addEventListener("load",function() {
+    //             // This hides the address bar:
+    //             window.scrollTo(0, 100);
+    //         // });
+    //     }, 3000);
+    // }, []);
+
     return (
         <div className="App-content">
-            <ul className="card-list">
+            <ul className={[
+                "card-list",
+                isDescribing ? 'is-describing' : null
+            ].join(" ")}>
                 {cards.map((_, index) =>
                     <li
                         className={[
@@ -80,7 +99,8 @@ function App() {
                                 2 * TOTAL_CARDS - index,
                             animationDelay: `${index}s`,
                             transitionDelay: `${index + 0.5}s`,
-                            marginTop: `${4 + index}px`
+                            marginTop: `${4 + index}px`,
+                            marginLeft: `${4 + index}px`
                         }}
                         data-card={index}
                     >
@@ -97,6 +117,7 @@ function App() {
                     </li>
                 )}
             </ul>
+            {isDescribing && <div className="description">{text}</div>}
         </div>
     );
 }

@@ -12,15 +12,7 @@ export default function getRandomMessage(): { text?: string; image?: string } {
     {
       text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
         
-        Donec dapibus ipsum sit amet pellentesque hendrerit.
-        
-        Phasellus eget sapien ut libero egestas efficitur a eget lectus.
-        
-        Aliquam vel elit nec orci dictum tempus.
-        
-        Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        
-        Interdum et malesuada fames ac ante ipsum primis in faucibus.`,
+        Donec dapibus ipsum sit amet pellentesque hendrerit.`,
       image: ElMonImage,
     },
     // {
@@ -36,11 +28,7 @@ export default function getRandomMessage(): { text?: string; image?: string } {
     {
       text: `Vestibulum posuere eros quis nisi convallis aliquam.
   
-          Interdum et malesuada fames ac ante ipsum primis in faucibus.
-      
-          Vestibulum ultricies massa tortor, ut consequat libero elementum id.
-      
-          Morbi a consequat lectus. Praesent suscipit non sapien sed tempus. Cras nec laoreet justo.`,
+          Interdum et malesuada fames ac ante ipsum primis in faucibus.`,
       image: ElSacerdotImage,
     },
     // {
