@@ -7,27 +7,28 @@ import ElMonImage from './images/el-mon.png';
 import MortIVidaImage from './images/mort-i-vida.png';
 import ElSacerdotImage from './images/el-sacerdot.png';
 
-export default function getRandomMessage(): { text?: string; image?: string } {
+export default function getRandomMessage(): {
+  text?: string;
+  image?: string;
+  maxImageWidth?: string;
+} {
   const messages = [
     {
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
         Donec dapibus ipsum sit amet pellentesque hendrerit.`,
       image: ElMonImage,
     },
-    // {
-    //   text: `Vestibulum posuere eros quis nisi convallis aliquam.
-
-    //     Interdum et malesuada fames ac ante ipsum primis in faucibus.
-    
-    //     Vestibulum ultricies massa tortor, ut consequat libero elementum id.
-    
-    //     Morbi a consequat lectus. Praesent suscipit non sapien sed tempus. Cras nec laoreet justo.`,
-    //   image: MortIVidaImage,
-    // },
     {
       text: `Vestibulum posuere eros quis nisi convallis aliquam.
-  
+
+        Interdum et malesuada fames ac ante ipsum primis in faucibus.`,
+      image: MortIVidaImage,
+      maxImageWidth: '65%',
+    },
+    {
+      text: `Vestibulum posuere eros quis nisi convallis aliquam.
+
           Interdum et malesuada fames ac ante ipsum primis in faucibus.`,
       image: ElSacerdotImage,
     },
@@ -35,9 +36,9 @@ export default function getRandomMessage(): { text?: string; image?: string } {
     //   text: `Mauris facilisis viverra eleifend. Ut luctus imperdiet nisi, non vehicula tellus lacinia sit amet.
 
     //     Curabitur lorem ligula, eleifend vel dictum et, rhoncus non nisi. Etiam efficitur erat lacus, non mollis metus sagittis ac.
-    
+
     //     Phasellus turpis lacus, congue non lectus vel, tempus feugiat tellus.
-    
+
     //     Aenean suscipit nunc non fringilla porttitor.`,
     //   image: JudgementImage,
     // },
@@ -45,9 +46,9 @@ export default function getRandomMessage(): { text?: string; image?: string } {
     //   text: `Nam sit amet nulla eget dui sollicitudin molestie quis a nibh.
 
     //     Aenean nisl risus, vulputate in tristique id, tristique eu arcu.
-    
+
     //     Donec et sollicitudin lectus. Phasellus dictum ante a dui aliquet condimentum.
-    
+
     //     Sed fringilla, ligula ut ornare aliquam, est enim molestie turpis, vitae porttitor eros erat nec risus.`,
     //   image: DeathImage,
     // },

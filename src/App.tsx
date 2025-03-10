@@ -4,9 +4,12 @@ import BackImage from './images/back.jpg';
 import FrontImage from './images/front.jpg';
 import Loading from './loading/Loading';
 import NJ75Image from './images/nj75.png';
+import FacebookIcon from './images/social-media/facebook.svg';
+import InstagramIcon from './images/social-media/instagram.svg';
+import XIcon from './images/social-media/x.svg';
 import './App.css';
 
-const { text = '', image = '' } = getMessage();
+const { text = '', image = '', maxImageWidth = '85%' } = getMessage();
 
 const TOTAL_CARDS = Math.round(Math.random() * 6) + 1;
 const TIME = 1 * TOTAL_CARDS;
@@ -77,6 +80,7 @@ function App() {
 
     return (
         <div className="App-content">
+            <SocialMediaLinks />
             <ul className={[
                 "card-list",
                 isDescribing ? 'is-describing' : null
@@ -111,7 +115,11 @@ function App() {
                         {!index &&
                             <div className="flip-card-back">
                                 <img src={FrontImage} className="cover-image" />
-                                <img src={image} className="actual-image is-front" />
+                                <img
+                                    src={image}
+                                    className="actual-image is-front"
+                                    style={{ maxWidth: maxImageWidth }}
+                                />
                             </div>
                         }
                     </li>
@@ -120,6 +128,22 @@ function App() {
             {isDescribing && <div className="description">{text}</div>}
         </div>
     );
+}
+
+function SocialMediaLinks() {
+    return (
+        <div className="social-media-links">
+            <a href="https://www.facebook.com/najordana" target="_blank">
+                <img src={FacebookIcon} />
+            </a>
+            <a href="https://www.instagram.com/na_jordana" target="_blank">
+                <img src={InstagramIcon} />
+            </a>
+            <a href="https://x.com/najordana" target="_blank">
+                <img src={XIcon} />
+            </a>
+        </div>
+    )
 }
 
 export default App;
