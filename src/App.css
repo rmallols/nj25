@@ -155,15 +155,15 @@ ul {
 .flip-card-front, .flip-card-back {
     position: absolute;
     max-height: 100%;
-    bottom: 25%;
-    transition: bottom ease-in-out 0.8s;
+    top: 20%;
+    transition: top ease-in-out 0.8s;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
 }
 
 .card-list.is-describing .flip-card-front, 
 .card-list.is-describing .flip-card-back {
-    bottom: 250px;
+    top: 15%;
 }
 
 .flip-card-back {
@@ -181,22 +181,6 @@ ul {
 
 .cover-image {
     border-radius: 20px;
-}
-
-.actual-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* width: 75%; */
-    transform: translateX(-50%) translateY(-50%);
-    
-    &.is-back {
-        max-width: 50%;
-    }
-
-    &.is-front {
-        max-width: 80%;
-    }
 }
 
 .description {
@@ -217,9 +201,16 @@ ul {
     z-index: 1;
     top: 9px;
     left: 9px;
+    display: flex;
 
     a {
-        margin: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 9px;
+        margin-right: 9px;
+        width: 32px;
+        height: 32px;        
 
         &:first-child {
             margin-left: 0;
@@ -227,7 +218,20 @@ ul {
     }
 
     img {
-        width: 32px;
-        height: 32px;
+        &.is-web {
+            width: 29px;
+            height: 29px;
+        }        
     }
+}
+
+.try-again-cta {
+    position: fixed;
+    z-index: 1;
+    top: 9px;
+    right: 9px;
+    border: none;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: var(--color);
 }

@@ -1,18 +1,21 @@
-import { useState, useEffect } from 'react';
+import type { Message } from './messages';
+import { useState, useEffect, useCallback } from 'react';
 import getMessage from './messages';
-import BackImage from './images/back.jpg';
-import FrontImage from './images/front.jpg';
-import Loading from './loading/Loading';
-import NJ75Image from './images/nj75.png';
+import BackImage from './images/back.png';
+import WebIcon from './images/social-media/web.svg';
+import EmailIcon from './images/social-media/email.svg';
 import FacebookIcon from './images/social-media/facebook.svg';
 import InstagramIcon from './images/social-media/instagram.svg';
 import XIcon from './images/social-media/x.svg';
 import './App.css';
 
-const { text = '', image = '', maxImageWidth = '85%' } = getMessage();
+// Emperadriu
+// El món
 
-const TOTAL_CARDS = Math.round(Math.random() * 6) + 1;
-const TIME = 1 * TOTAL_CARDS;
+
+// const { text = '', image = '', maxImageWidth = '85%' } = getMessage();
+
+// const TOTAL_CARDS = Math.round(Math.random() * 6) + 1;
 
 function App() {
 
@@ -36,6 +39,8 @@ function App() {
     //     </div>
     // );
 
+    const [message, setMessage] = useState<Message>();
+    const [totalCards, setTotalCards] = useState<number>(0);
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
     const [isZooming, setIsZooming] = useState<boolean>(false);
     const [isDescribing, setIsDescribing] = useState<boolean>(false);
@@ -43,8 +48,11 @@ function App() {
     const [cards, setCards] = useState<Array<void>>([]);
     const [animationsDirection, setAnimationsDirection] = useState<Array<'left' | 'right'>>([]);
 
-    useEffect(() => {
-        setCards(new Array(TOTAL_CARDS).fill(''));
+    const run = useCallback(() => {
+        const totalCards = Math.round(Math.random() * 5) + 2;
+        setMessage(getMessage());
+        setTotalCards(totalCards);
+        setCards(new Array(totalCards).fill(''));
         setTimeout(() => {
             setIsAnimating(true);
             setTimeout(() => {
@@ -56,8 +64,12 @@ function App() {
                         setIsDescribing(true);
                     }, 1500);
                 }, 1500);
-            }, TIME * 1000);
+            }, totalCards * 1000);
         }, 1000);
+    }, []);
+
+    useEffect(() => {
+        run();
     }, []);
 
     useEffect(() => {
@@ -65,6 +77,15 @@ function App() {
             Math.round(Math.random()) < 1 ? 'left' : 'right'
         )));
     }, [cards]);
+
+    const tryAgain = useCallback(() => {
+        setFlipCardIndex(undefined);
+        setIsZooming(false);
+        setIsDescribing(false);
+        setTimeout(() => {
+            run();
+        }, 1000);
+    }, []);
 
     // useEffect(() => {
     //     setTimeout(function () {
@@ -81,6 +102,7 @@ function App() {
     return (
         <div className="App-content">
             <SocialMediaLinks />
+            {isDescribing && <TryAgainCTA onClick={tryAgain} />}
             <ul className={[
                 "card-list",
                 isDescribing ? 'is-describing' : null
@@ -99,8 +121,8 @@ function App() {
                         ].join(' ')}
                         style={{
                             zIndex: isAnimating ?
-                                TOTAL_CARDS - index - 1 :
-                                2 * TOTAL_CARDS - index,
+                                totalCards - index - 1 :
+                                2 * totalCards - index,
                             animationDelay: `${index}s`,
                             transitionDelay: `${index + 0.5}s`,
                             marginTop: `${4 + index}px`,
@@ -110,22 +132,24 @@ function App() {
                     >
                         <div className="flip-card-front">
                             <img src={BackImage} className="cover-image" />
-                            <img src={NJ75Image} className="actual-image is-back" />
+                            {/* <img src={NJ75Image} className="actual-image is-back" /> */}
                         </div>
                         {!index &&
                             <div className="flip-card-back">
-                                <img src={FrontImage} className="cover-image" />
+                                {/* <img src={FrontImage} className="cover-image" /> */}
                                 <img
-                                    src={image}
-                                    className="actual-image is-front"
-                                    style={{ maxWidth: maxImageWidth }}
+                                    src={message?.image}
+                                    className="cover-image"
+                                // style={{
+                                //     maxWidth: message?.maxImageWidth ?? '85%'
+                                // }}
                                 />
                             </div>
                         }
                     </li>
                 )}
             </ul>
-            {isDescribing && <div className="description">{text}</div>}
+            {isDescribing && <div className="description">{message?.text}</div>}
         </div>
     );
 }
@@ -133,6 +157,12 @@ function App() {
 function SocialMediaLinks() {
     return (
         <div className="social-media-links">
+            <a
+                href="https://najordana.es/index.php/ca/qui-som/contacto-2"
+                target="_blank"
+            >
+                <img src={WebIcon} className="is-web" />
+            </a>
             <a href="https://www.facebook.com/najordana" target="_blank">
                 <img src={FacebookIcon} />
             </a>
@@ -142,7 +172,20 @@ function SocialMediaLinks() {
             <a href="https://x.com/najordana" target="_blank">
                 <img src={XIcon} />
             </a>
+            <a href="mailto:info@najordana.es" target="_blank">
+                <img src={EmailIcon} />
+            </a>
         </div>
+    )
+}
+
+function TryAgainCTA({ onClick }: { onClick: () => void }) {
+    return (
+        <button
+            className="try-again-cta"
+            onClick={onClick}>
+            Jugar de nou!
+        </button>
     )
 }
 
