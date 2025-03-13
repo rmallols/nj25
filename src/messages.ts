@@ -23,63 +23,59 @@ export type Message = {
 export default function getRandomMessage(): Message {
   const messages = [
     {
-      text: `el-boig`,
+      text: `Encarna la innocència, l'espontaneïtat i la llibertat. Pots fer el que t’isca dels collons o del potorro.`,
       image: ElBoigImage,
     },
     {
-      text: `el-dimoni`,
+      text: `Simbolitza el materialisme, la luxúria, la degradació i els excesos, per tant, si en Falles no folles, per Pasqua no falles.`,
       image: ElDimoniImage,
     },
     {
-      text: `el-emperador`,
+      text: `Representa el control autoritari mitjançant la intel·ligència, per tant, no tractes d'imitar ni a Trump, ni a Musk, ni a Putin.`,
       image: ElEmperadorImage,
     },
     {
-      text: `el-ermita`,
+      text: `Significa la introspecció, la meditació en solitari per a asimilar allò aprés. Has de trobar el control remot perdut. Aïllat per a pensar fins que el wi-fi no puga localitzar-te. `,
       image: ElErmitaImage,
     },
     {
-      text: `el-mag`,
+      text: `Significa imaginació, originalitat, compromís i grans habilitats, per tant, t’has de fer fallera o faller de Na Jordana.`,
       image: ElMagImage,
     },
     {
-      text: `L’arcà núm. 21 del Tarot és  una carta de finalització d’un cicle i
-        ací es concreta en una morgue de cadàvers de tot l’espectre polític. Hi falta, però el ‘pedorro’ que s’amagà en el Ventorro. `,
+      text: `Marca la finalització o l’ocàs d’un cicle, com la trajectòria del ‘pedorro’ que s’amagà en el Ventorro.`,
       image: ElMonImage,
     },
     {
-      text: `L’arcà núm. 5 del Tarot  marca la conformitat amb les normes establertes
-      a través d’ estructures i rituals tradicionals que en l’àmbit faller frenen  la creativitat i la innovació.`,
+      text: `Prediu la conformitat amb les normes establertes a través de  rituals tradicionals que frenen  la creativitat i la innovació, per tant, fes-te faller o fallera de qualsevol falla rància, però mai de Na Jordana. `,
       image: ElSacerdotImage,
     },
     {
-      text: `el-sol`,
+      text: `Reflectix felicitat, satisfacció, vitalitat i èxit. No oblides posar-te ulleres i Nivea perquè vas a brillar molt.`,
       image: ElSolImage,
     },
     {
-      text: `els-amants`,
+      text: `Ho diu el Tarot i ho deia Estellés: “No hi havia a València dos amants com vosaltres …” Entés?`,
       image: ElsAmantsImage,
     },
     {
-      text: `la-emperadriu`,
+      text: `Representa l’energia femenina  quant a la capacitat de gestar i donar vida, per tant: “Tú que eres tan guapa y tan lista. Tú  te mereces un príncipe, un dentista…”.`,
       image: LaEmperadriuImage,
     },
     {
-      text: `la-forca`,
+      text: `Fa referència a coses i situacions que poden acabar de sobte i sense un previ avís. No és mala carta si penses en la hipoteca.`,
       image: LaForcaImage,
     },
     {
-      text: `la-lluna`,
+      text: `Representa el dolor que ocultes o que t’oculten, malgrat que sigues brillant.  Posa’t ponxo, beu tequila, plora  i canta com fa Chavela:  “Pues desde que te fuiste no he tenido luz de luna…”`,
       image: LaLLunaImage,
     },
     {
-      text: `L’arcà núm. 13 del Tarot té un nom aterrador, però  no és mala carta. Indica canvi i transformació
-  
-        Com quan se t’apaga el mòbil, el carregues i el reinicies amb més memòria RAM.`,
+      text: `Té  nom aterrador, però  no és mala carta. A quin sant! Indica canvi i transformació, per tant,  apaga el mòbil, carrega’l i reibicia’l. Potser obtingues més memòria RAM.`,
       image: LaMortImage,
     },
     {
-      text: `la-torre`,
+      text: `Marca la destrucció que altera l’equilibri i l’estabilitat. És com una DANA que et posa a prova per traure força davant  la incompetència política per poder avançar cap al futur. `,
       image: LaTorreImage,
     },
   ];

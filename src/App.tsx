@@ -47,6 +47,7 @@ function App() {
     const [flipCardIndex, setFlipCardIndex] = useState<number>();
     const [cards, setCards] = useState<Array<void>>([]);
     const [animationsDirection, setAnimationsDirection] = useState<Array<'left' | 'right'>>([]);
+    const [cardsRotation, setCardsRotation] = useState<Array<number>>([]);
 
     const run = useCallback(() => {
         const totalCards = Math.round(Math.random() * 5) + 2;
@@ -76,6 +77,9 @@ function App() {
         setAnimationsDirection(cards.map((_) => (
             Math.round(Math.random()) < 1 ? 'left' : 'right'
         )));
+        setCardsRotation(cards.map((_) => (
+           Math.round(Math.random() * 10) * (Math.round(Math.random()) < 1 ? 1 : -1)
+        )));        
     }, [cards]);
 
     const tryAgain = useCallback(() => {
@@ -126,7 +130,9 @@ function App() {
                             animationDelay: `${index}s`,
                             transitionDelay: `${index + 0.5}s`,
                             marginTop: `${4 + index}px`,
-                            marginLeft: `${4 + index}px`
+                            marginLeft: `${4 + index}px`,
+                            // This conflicts with the keyframes - might worth adding a new layers only for the cardsRotation
+                            // transform: `rotateZ(${cardsRotation[index]}deg) ${index === flipCardIndex ? 'rotateY(180deg)' : ''} ${index === flipCardIndex && isZooming ? 'scale(1.2)' : ''}`
                         }}
                         data-card={index}
                     >
