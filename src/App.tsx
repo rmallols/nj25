@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react"
+
 import type { Message } from './messages';
 import { useState, useEffect, useCallback } from 'react';
 import getMessage from './messages';
@@ -48,22 +50,22 @@ function App() {
         setMessage(getMessage());
         // setIsSettled(false);
         // setTimeout(() => {
-            setIsSliding(true);
+        setIsSliding(true);
+        setTimeout(() => {
+            setIsSettled(true);
+            setIsSliding(false);
+            setIsShuffling(true);
             setTimeout(() => {
-                setIsSettled(true);
-                setIsSliding(false);
-                setIsShuffling(true);
+                setIsShuffling(false);
+                setFlipCardIndex(0);
                 setTimeout(() => {
-                    setIsShuffling(false);
-                    setFlipCardIndex(0);
+                    setIsZooming(true);
                     setTimeout(() => {
-                        setIsZooming(true);
-                        setTimeout(() => {
-                            setIsDescribing(true);
-                        }, 1500);
+                        setIsDescribing(true);
                     }, 1500);
-                }, totalCards * 1000);
+                }, 1500);
             }, totalCards * 1000);
+        }, totalCards * 1000);
         // }, 1000);
     }, []);
 
@@ -154,6 +156,7 @@ function App() {
                 </ul>
                 {isDescribing && <div className="description">{message?.text}</div>}
             </div>
+            <Analytics />
         </>
     );
 }
