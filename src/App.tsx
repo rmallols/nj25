@@ -51,8 +51,6 @@ function App() {
 
     const run = useCallback((totalCards: number) => {
         setMessage(getMessage());
-        // setIsSettled(false);
-        // setTimeout(() => {
         setIsSliding(true);
         setTimeout(() => {
             setIsSettled(true);
@@ -65,11 +63,10 @@ function App() {
                     setIsZooming(true);
                     setTimeout(() => {
                         setIsDescribing(true);
-                    }, 1500);
-                }, 1500);
+                    }, 1000);
+                }, 1000);
             }, totalCards * 1000);
-        }, totalCards * 1000);
-        // }, 1000);
+        }, (totalCards / 2 + 1) * 1000);
     }, []);
 
     useEffect(() => {
@@ -122,7 +119,7 @@ function App() {
                                 zIndex: isShuffling ?
                                     totalCards - index - 1 :
                                     2 * totalCards - index,
-                                animationDelay: `${index}s`,
+                                animationDelay: `${isShuffling ? index : index / 2}s`,
                                 transitionDelay: `${index + 0.5}s`,
                                 marginTop: `${4 + index}px`,
                                 marginLeft: `${4 + index}px`,
@@ -137,11 +134,9 @@ function App() {
                                         transform: `rotateZ(${cardsRotation[index]}deg)`
                                     }}
                                     onLoad={onImageLoad} />
-                                {/* <img src={NJ75Image} className="actual-image is-back" /> */}
                             </div>
                             {!index &&
                                 <div className="flip-card-back">
-                                    {/* <img src={FrontImage} className="cover-image" /> */}
                                     <img
                                         src={message?.image}
                                         className="cover-image"
