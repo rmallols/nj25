@@ -5,5 +5,5 @@ export function isSupportedOS(): boolean {
             return parseInt(v[1], 10) >= 17;
         }
     }
-    return true;
+    return false;
 }

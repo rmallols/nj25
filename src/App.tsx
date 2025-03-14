@@ -27,10 +27,10 @@ function App() {
     const onImageLoad = useCallback(() => {
         if (!ready) {
             setTimeout(() => {
-                if (isSupportedOS()) {
+                // if (isSupportedOS()) {
                     setReady(true);
                     run(totalCards);
-                }
+                // }
             }, 2000);
         }
     }, [totalCards]);
@@ -90,7 +90,7 @@ function App() {
         <>
             <div className={ready ? 'hide' : 'show'}><Loading /></div>
             <div className={[ready ? 'show' : 'hidden', 'App-content'].join(' ')}>
-                <Header />
+                {isSupportedOS() && <Header />}
                 <ul className={[
                     "card-list",
                     isDescribing ? 'is-describing' : null

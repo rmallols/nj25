@@ -18,13 +18,17 @@ const notSupportedMessage: { [key: string]: string; } = {
 export default function Loading() {
     return (
         <div className="Loading">
-            {isSupportedOS()
+            <>
+                <div className="Loading-spinner" />
+                <h1>{loadingMessage[window.location.pathname]}</h1>
+            </>
+            {/* {isSupportedOS()
                 ?
                 <>
                     <div className="Loading-spinner" />
                     <h1>{loadingMessage[window.location.pathname]}</h1>
                 </> :
-                <h1>{notSupportedMessage[window.location.pathname]}</h1>}
+                <h1>{notSupportedMessage[window.location.pathname]}</h1>} */}
         </div>
     );
 }
