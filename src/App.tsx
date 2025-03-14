@@ -108,14 +108,20 @@ function App() {
                                 transitionDelay: `${index + 0.5}s`,
                                 marginTop: `${4 + index}px`,
                                 marginLeft: `${4 + index}px`,
-                                // ALSO PLEASE ADD ONLOAD TO ENSURE CARD IS LOADED BEFORE ANYTHING IS SHOWN!!
                                 // This conflicts with the keyframes - might worth adding a new layers only for the cardsRotation
                                 // transform: `rotateZ(${cardsRotation[index]}deg) ${index === flipCardIndex ? 'rotateY(180deg)' : ''} ${index === flipCardIndex && isZooming ? 'scale(1.2)' : ''}`
                             }}
                             data-card={index}
                         >
+                            {/* <div className="card-list__item__inner"> */}
                             <div className="flip-card-front">
-                                <img src={BackImage} className="cover-image" onLoad={onImageLoad} />
+                                <img
+                                    src={BackImage}
+                                    className="cover-image"
+                                    style={{
+                                        transform: `rotateZ(${cardsRotation[index]}deg)`
+                                    }}
+                                    onLoad={onImageLoad} />
                                 {/* <img src={NJ75Image} className="actual-image is-back" /> */}
                             </div>
                             {!index &&
@@ -124,12 +130,14 @@ function App() {
                                     <img
                                         src={message?.image}
                                         className="cover-image"
-                                    // style={{
-                                    //     maxWidth: message?.maxImageWidth ?? '85%'
-                                    // }}
+                                        style={{
+                                            transform: `rotateZ(${cardsRotation[index]}deg)`
+                                        }}
                                     />
                                 </div>
+
                             }
+                            {/* </div> */}
                         </li>
                     )}
                 </ul>
