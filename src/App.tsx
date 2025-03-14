@@ -98,7 +98,6 @@ function App() {
             <div className={[ready ? 'show' : 'hidden', 'App-content'].join(' ')}>
                 <div className="header">
                     <SocialMediaLinks />
-                    {/* {isDescribing && <TryAgainCTA onClick={tryAgain} />} */}
                     <SelectLanguage />
                 </div>
                 <ul className={[
@@ -127,12 +126,9 @@ function App() {
                                 transitionDelay: `${index + 0.5}s`,
                                 marginTop: `${4 + index}px`,
                                 marginLeft: `${4 + index}px`,
-                                // This conflicts with the keyframes - might worth adding a new layers only for the cardsRotation
-                                // transform: `rotateZ(${cardsRotation[index]}deg) ${index === flipCardIndex ? 'rotateY(180deg)' : ''} ${index === flipCardIndex && isZooming ? 'scale(1.2)' : ''}`
                             }}
                             data-card={index}
                         >
-                            {/* <div className="card-list__item__inner"> */}
                             <div className="flip-card-front">
                                 <img
                                     src={BackImage}
@@ -156,7 +152,6 @@ function App() {
                                 </div>
 
                             }
-                            {/* </div> */}
                         </li>
                     )}
                 </ul>
@@ -165,6 +160,7 @@ function App() {
                     <div className="description">
                         <h1>{message?.title?.[window.location.pathname]}</h1>
                         <div>{message?.text?.[window.location.pathname]}</div>
+                        <TryAgainCTA onClick={tryAgain} />
                     </div>
                 }
             </div>

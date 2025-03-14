@@ -189,7 +189,7 @@ h1 {
 
 .card-list.is-describing .flip-card-front, 
 .card-list.is-describing .flip-card-back {
-    top: 10%;
+    top: 15%;
 }
 
 .flip-card-back {
@@ -285,13 +285,11 @@ h1 {
 }
 
 .try-again-cta {
-    position: fixed;
-    z-index: 1;
-    top: 9px;
-    right: 9px;
     border: none;
     padding: 7px;
     border-radius: 5px;
     background-color: var(--color);
-    font-size: 16px;
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 15px 0;
 }
