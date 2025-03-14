@@ -14,7 +14,9 @@ function App() {
     const [ready, setReady] = useState<boolean>(false);
     const [message, setMessage] = useState<Message>();
     const [totalCards, setTotalCards] = useState<number>(0);
-    const [isAnimating, setIsAnimating] = useState<boolean>(false);
+    const [isSliding, setIsSliding] = useState<boolean>(false);
+    const [isSettled, setIsSettled] = useState<boolean>(false);
+    const [isShuffling, setIsShuffling] = useState<boolean>(false);
     const [isZooming, setIsZooming] = useState<boolean>(false);
     const [isDescribing, setIsDescribing] = useState<boolean>(false);
     const [flipCardIndex, setFlipCardIndex] = useState<number>();
@@ -36,7 +38,7 @@ function App() {
     }, []);
 
     const initCardCount = useCallback((): number => {
-        const totalCards = Math.round(Math.random() * 6) + 2;
+        const totalCards = Math.round(Math.random() * 5) + 2;
         setTotalCards(totalCards);
         setCards(new Array(totalCards).fill(''));
         return totalCards;
@@ -44,19 +46,25 @@ function App() {
 
     const run = useCallback((totalCards: number) => {
         setMessage(getMessage());
-        setTimeout(() => {
-            setIsAnimating(true);
+        // setIsSettled(false);
+        // setTimeout(() => {
+            setIsSliding(true);
             setTimeout(() => {
-                setIsAnimating(false);
-                setFlipCardIndex(0);
+                setIsSettled(true);
+                setIsSliding(false);
+                setIsShuffling(true);
                 setTimeout(() => {
-                    setIsZooming(true);
+                    setIsShuffling(false);
+                    setFlipCardIndex(0);
                     setTimeout(() => {
-                        setIsDescribing(true);
+                        setIsZooming(true);
+                        setTimeout(() => {
+                            setIsDescribing(true);
+                        }, 1500);
                     }, 1500);
-                }, 1500);
+                }, totalCards * 1000);
             }, totalCards * 1000);
-        }, 1000);
+        // }, 1000);
     }, []);
 
     useEffect(() => {
@@ -64,7 +72,7 @@ function App() {
             Math.round(Math.random()) < 1 ? 'left' : 'right'
         )));
         setCardsRotation(cards.map((_) => (
-            Math.round(Math.random() * 10) * (Math.round(Math.random()) < 1 ? 1 : -1)
+            Math.round(Math.random() * 15) * (Math.round(Math.random()) < 1 ? 1 : -1)
         )));
     }, [cards]);
 
@@ -72,6 +80,7 @@ function App() {
         setFlipCardIndex(undefined);
         setIsZooming(false);
         setIsDescribing(false);
+        setIsSettled(false);
         setTimeout(() => {
             const totalCards = initCardCount();
             run(totalCards);
@@ -92,16 +101,18 @@ function App() {
                         <li
                             className={[
                                 'card-list__item',
-                                isAnimating ?
+                                isSliding ? 'is-sliding' : null,
+                                isSettled ? 'is-settled' : null,
+                                isShuffling ?
                                     animationsDirection[index] === 'left'
-                                        ? 'is-animating-left'
-                                        : 'is-animating-right'
+                                        ? 'is-shuffling-left'
+                                        : 'is-shuffling-right'
                                     : null,
                                 index === flipCardIndex ? 'is-flipping' : null,
                                 isZooming ? 'is-zooming' : null,
                             ].join(' ')}
                             style={{
-                                zIndex: isAnimating ?
+                                zIndex: isShuffling ?
                                     totalCards - index - 1 :
                                     2 * totalCards - index,
                                 animationDelay: `${index}s`,

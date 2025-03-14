@@ -102,25 +102,25 @@ ul {
 
 @keyframes shuffle-left {
     0% {
-      transform: rotate(0) translateX(0) scale(1);
+      transform: rotate(0) translateX(0) translateY(0) scale(1);
     }
     50% {
-      transform: rotate(-5deg) translateX(-105%) scale(0.96);
+      transform: rotate(-5deg) translateX(-105%) translateY(0) scale(0.96);
     }
     100% {
-      transform: rotate(0) translateX(0);
+      transform: rotate(0) translateX(0) translateY(0);
     }
 }
 
 @keyframes shuffle-right {
     0% {
-      transform: rotate(0) translateX(0) scale(1);
+      transform: rotate(0) translateX(0) translateY(0) scale(1);
     }
     50% {
-      transform: rotate(5deg) translateX(105%) scale(0.96);
+      transform: rotate(5deg) translateX(105%) translateY(0) scale(0.96);
     }
     100% {
-      transform: rotate(0) translateX(0);
+      transform: rotate(0) translateX(0) translateY(0);
     }
 }
 
@@ -135,7 +135,7 @@ ul {
 
 .card-list__item {
     position: absolute;
-    animation: none;
+    /* animation: none; */
     animation-fill-mode: forwards;
     display: flex;
     justify-content: center;
@@ -144,15 +144,26 @@ ul {
     width: 70%;
     transition: transform 0.8s, top 0.8s;
     transform-style: preserve-3d;    
-    &.is-animating-left {
+    transform: translateY(100%);
+
+    &.is-sliding {
+        animation: slide-up 1s ease-in-out;
+        animation-fill-mode: forwards;
+    }    
+    &.is-settled {
+        transform: translateY(0%);
+    }
+    &.is-shuffling-left {
         animation: shuffle-left 1s ease-in-out;
         transition: z-index 0s ease-in-out;
-
     }    
-    &.is-animating-right {
+    &.is-shuffling-right {
         animation: shuffle-right 1s ease-in-out;
         transition: z-index 0s ease-in-out;
     }        
+    /* &.is-describing {
+    transform: translateY(0%);
+    } */
 }
 
 .card-list__item__inner {
@@ -182,15 +193,15 @@ ul {
 }
 
 .flip-card-back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) !important;
 }
 
 .card-list__item.is-flipping {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) !important;
 }
 
 .card-list__item.is-flipping.is-zooming {
-    transform: rotateY(180deg) scale(1.2);
+    transform: rotateY(180deg) translateY(0) scale(1.2) !important;
     /* transform: rotateY(180deg); */
 }
 
@@ -207,6 +218,7 @@ ul {
     padding: 15px;
     background-color: rgba(0, 0, 0, .7);
     animation-name: slide-up;
+    animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
     will-change: transform;    
