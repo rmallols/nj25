@@ -5,14 +5,8 @@ import { useState, useEffect, useCallback } from 'react';
 import getMessage from './messages';
 import Loading from './loading/Loading';
 import BackImage from './images/back.png';
-import WebIcon from './images/social-media/web.svg';
-import EmailIcon from './images/social-media/email.svg';
-import FacebookIcon from './images/social-media/facebook.svg';
-import InstagramIcon from './images/social-media/instagram.svg';
-import ValenciaFlag from './images/flags/valencia-flag.svg';
-import SpainFlag from './images/flags/spain-flag.svg';
-import UKFlag from './images/flags/uk-flag.svg';
-import XIcon from './images/social-media/x.svg';
+import Header from './header/Header';
+import Description from './description/Description';
 import './App.css';
 
 function App() {
@@ -93,10 +87,7 @@ function App() {
         <>
             <div className={ready ? 'hide' : 'show'}><Loading /></div>
             <div className={[ready ? 'show' : 'hidden', 'App-content'].join(' ')}>
-                <div className="header">
-                    <SocialMediaLinks />
-                    <SelectLanguage />
-                </div>
+                <Header />
                 <ul className={[
                     "card-list",
                     isDescribing ? 'is-describing' : null
@@ -151,71 +142,12 @@ function App() {
                     )}
                 </ul>
                 {
-                    isDescribing &&
-                    <div className="description">
-                        <h1>{message?.title?.[window.location.pathname]}</h1>
-                        <div>{message?.text?.[window.location.pathname]}</div>
-                        <TryAgainCTA onClick={tryAgain} />
-                    </div>
+                    isDescribing && <Description message={message} onTryAgain={tryAgain} />
                 }
             </div>
             <Analytics />
         </>
     );
-}
-
-function SocialMediaLinks() {
-    return (
-        <div className="social-media-links">
-            <a
-                href="https://najordana.es/index.php/ca/qui-som/contacto-2"
-                target="_blank"
-            >
-                <img src={WebIcon} className="is-web" />
-            </a>
-            <a href="https://www.facebook.com/najordana" target="_blank">
-                <img src={FacebookIcon} />
-            </a>
-            <a href="https://www.instagram.com/na_jordana" target="_blank">
-                <img src={InstagramIcon} />
-            </a>
-            <a href="https://x.com/najordana" target="_blank">
-                <img src={XIcon} />
-            </a>
-            <a href="mailto:info@najordana.es" target="_blank">
-                <img src={EmailIcon} />
-            </a>
-        </div>
-    )
-}
-
-function SelectLanguage() {
-    const getClassName = useCallback((pathname: string): string => (
-        window.location.pathname === pathname ? 'is-selected' : ''
-    ), []);
-    return (
-        <div className="select-language">
-            <a href="/" className={getClassName('/')}>
-                <img src={ValenciaFlag} />
-            </a>
-            <a href="/es" className={getClassName('/es')}>
-                <img src={SpainFlag} />
-            </a>
-            <a href="/en" className={getClassName('/en')}>
-                <img src={UKFlag} />
-            </a>
-        </div>
-    )
-}
-
-function TryAgainCTA({ onClick }: { onClick: () => void }) {
-    return (
-        <button
-            className="try-again-cta"
-            onClick={onClick}>
-            Jugar de nou!
-        </button>
-    )
 }
 
 export default App;

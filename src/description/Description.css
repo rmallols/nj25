@@ -1,0 +1,23 @@
+.Description {
+    font-size: 26px;
+    position: absolute;
+    bottom: 0;
+    height: auto;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, .7);
+    animation-name: slide-up;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+    will-change: transform;
+
+    .try-again-cta {
+        border: none;
+        padding: 7px;
+        border-radius: 5px;
+        background-color: var(--color);
+        font-size: 24px;
+        padding: 10px 20px;
+        margin: 15px 0;
+    }    
+}
