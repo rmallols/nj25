@@ -94,7 +94,8 @@ function App() {
             <div className={ready ? 'hide' : 'show'}><Loading /></div>
             <div className={[ready ? 'show' : 'hidden', 'App-content'].join(' ')}>
                 <SocialMediaLinks />
-                {isDescribing && <TryAgainCTA onClick={tryAgain} />}
+                {/* {isDescribing && <TryAgainCTA onClick={tryAgain} />} */}
+                <SelectLanguage />
                 <ul className={[
                     "card-list",
                     isDescribing ? 'is-describing' : null
@@ -183,6 +184,12 @@ function SocialMediaLinks() {
                 <img src={EmailIcon} />
             </a>
         </div>
+    )
+}
+
+function SelectLanguage() {
+    return (
+        <div className="try-again-cta"><a href="/test">Testing</a></div>
     )
 }
 
