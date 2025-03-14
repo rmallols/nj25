@@ -196,6 +196,7 @@ ul {
 
 .cover-image {
     border-radius: 20px;
+    transition: transform 0.8s;
 }
 
 .description {
