@@ -9,7 +9,18 @@ import Header from './header/Header';
 import Description from './description/Description';
 import './App.css';
 
+function iOSversion() {
+    if (/iP(hone|od|ad)/.test(navigator.platform)) {
+        // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+        var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+        if (v) {
+            return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] ?? 0, 10)];
+        }
+    }
+}
+
 function App() {
+    alert(iOSversion());
     const [ready, setReady] = useState<boolean>(false);
     const [message, setMessage] = useState<Message>();
     const [totalCards, setTotalCards] = useState<number>(0);
