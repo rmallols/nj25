@@ -9,6 +9,9 @@ import WebIcon from './images/social-media/web.svg';
 import EmailIcon from './images/social-media/email.svg';
 import FacebookIcon from './images/social-media/facebook.svg';
 import InstagramIcon from './images/social-media/instagram.svg';
+import ValenciaFlag from './images/flags/valencia-flag.svg';
+import SpainFlag from './images/flags/spain-flag.svg';
+import UKFlag from './images/flags/uk-flag.svg';
 import XIcon from './images/social-media/x.svg';
 import './App.css';
 
@@ -155,7 +158,10 @@ function App() {
                         </li>
                     )}
                 </ul>
-                {isDescribing && <div className="description">{message?.text}</div>}
+                {
+                    isDescribing &&
+                    <div className="description">{message?.text?.[window.location.pathname]}</div>
+                }
             </div>
             <Analytics />
         </>
@@ -188,8 +194,21 @@ function SocialMediaLinks() {
 }
 
 function SelectLanguage() {
+    const getClassName = useCallback((pathname: string): string => (
+        window.location.pathname === pathname ? 'is-selected' : ''
+    ), []);
     return (
-        <div className="try-again-cta"><a href="/test">Testing</a></div>
+        <div className="select-language">
+            <a href="/" className={getClassName('/')}>
+                <img src={ValenciaFlag} />
+            </a>
+            <a href="/es" className={getClassName('/es')}>
+                <img src={SpainFlag} />
+            </a>
+            <a href="/en" className={getClassName('/en')}>
+                <img src={UKFlag} />
+            </a>
+        </div>
     )
 }
 

@@ -15,7 +15,7 @@ import LaMortImage from './images/la-mort.png';
 import LaTorreImage from './images/la-torre.png';
 
 export type Message = {
-  text?: string;
+  text?: { [key: string]: string };
   image?: string;
   maxImageWidth?: string;
 };
@@ -23,59 +23,115 @@ export type Message = {
 export default function getRandomMessage(): Message {
   const messages = [
     {
-      text: `Encarna la innocència, l'espontaneïtat i la llibertat. Pots fer el que t’isca dels collons o del potorro.`,
+      text: {
+        '/': "Encarna la innocència, l'espontaneïtat i la llibertat. Pots fer el que t'isca dels collons o del potorro.",
+        '/es': 'Encarna la inocencia, la espontaneidad y la libertad. Puedes hacer lo que te salga de los cojones o del potorro.',
+        '/en': 'It embodies innocence, spontaneity and freedom. You can do whatever comes out of your ass or your ass.',
+      },
       image: ElBoigImage,
     },
     {
-      text: `Simbolitza el materialisme, la luxúria, la degradació i els excesos, per tant, si en Falles no folles, per Pasqua no falles.`,
+      text: {
+        '/': 'Simbolitza el materialisme, la luxúria, la degradació i els excesos, per tant, si en Falles no folles, per Pasqua no falles.',
+        '/es': 'Simboliza el materialismo, la lujuria, la degradación y los excesos, por tanto, si en Fallas no follas, por Pascua no fallas.',
+        '/en': "It symbolizes materialism, lust, degradation and excesses, therefore, if you don't go crazy during Falles, you won't go crazy at Easter.",
+      },
       image: ElDimoniImage,
     },
     {
-      text: `Representa el control autoritari mitjançant la intel·ligència, per tant, no tractes d'imitar ni a Trump, ni a Musk, ni a Putin.`,
+      text: {
+        '/': "Representa el control autoritari mitjançant la intel·ligència, per tant, no tractes d'imitar ni a Trump, ni a Musk, ni a Putin.",
+        '/es': 'Representa el control autoritario mediante la inteligencia, por tanto, no tratas de imitar ni a Trump, ni a Musk, ni a Putin.',
+        '/en': "It represents authoritarian control through intelligence, so don't try to imitate Trump, Musk, or Putin.",
+      },
       image: ElEmperadorImage,
     },
     {
-      text: `Significa la introspecció, la meditació en solitari per a asimilar allò aprés. Has de trobar el control remot perdut. Aïllat per a pensar fins que el wi-fi no puga localitzar-te. `,
+      text: {
+        '/': 'Significa la introspecció, la meditació en solitari per a asimilar allò aprés. Has de trobar el control remot perdut. Aïllat per a pensar fins que el wi-fi no puga localitzar-te.',
+        '/es': 'Significa la introspección, la meditación en solitario para asimilar lo aprendido. Tienes que encontrar el control remoto perdido. Aislado para pensar hasta que el wi-fi no pueda localizarte.',
+        '/en': 'It means introspection, solitary meditation to assimilate what you have learned. You have to find the lost remote control. Isolated to think until the wi-fi can locate you.',
+      },
       image: ElErmitaImage,
     },
     {
-      text: `Significa imaginació, originalitat, compromís i grans habilitats, per tant, t’has de fer fallera o faller de Na Jordana.`,
+      text: {
+        '/': 'Significa imaginació, originalitat, compromís i grans habilitats, per tant, t’has de fer fallera o faller de Na Jordana.',
+        '/es': 'Significa imaginación, originalidad, compromiso y grandes habilidades, por tanto, tienes que hacerte fallera o fallero de Na Jordana.',
+        '/en': 'It means imagination, originality, commitment and great skills, therefore, you have to become a fallera or faller of Na Jordana.',
+      },
       image: ElMagImage,
     },
     {
-      text: `Marca la finalització o l’ocàs d’un cicle, com la trajectòria del ‘pedorro’ que s’amagà en el Ventorro.`,
+      text: {
+        '/': 'Marca la finalització o l’ocàs d’un cicle, com la trajectòria del ‘pedorro’ que s’amagà en el Ventorro.',
+        '/es': 'Marca la finalización o el ocaso de un ciclo, como la trayectoria del pedorro que se escondió en el Ventorro.',
+        '/en': "It marks the end or decline of a cycle, like the trajectory of the 'pedorro' that hid in the restaurant 'Ventorro'.",
+      },
       image: ElMonImage,
     },
     {
-      text: `Prediu la conformitat amb les normes establertes a través de  rituals tradicionals que frenen  la creativitat i la innovació, per tant, fes-te faller o fallera de qualsevol falla rància, però mai de Na Jordana. `,
+      text: {
+        '/': 'Prediu la conformitat amb les normes establertes a través de  rituals tradicionals que frenen  la creativitat i la innovació, per tant, fes-te faller o fallera de qualsevol falla rància, però mai de Na Jordana.',
+        '/es': 'Predice la conformidad con las normas establecidas a través de rituales tradicionales que frenan la creatividad y la innovación, por tanto, hazte fallero o fallera de cualquier falla rancia, pero nunca de Na Jordana.',
+        '/en': 'It predicts conformity to established norms through traditional rituals that inhibit creativity and innovation, therefore, become a faller or fallera of any stale falla, but never of Na Jordana.',
+      },
       image: ElSacerdotImage,
     },
     {
-      text: `Reflectix felicitat, satisfacció, vitalitat i èxit. No oblides posar-te ulleres i Nivea perquè vas a brillar molt.`,
+      text: {
+        '/': 'Reflectix felicitat, satisfacció, vitalitat i èxit. No oblides posar-te ulleres i Nivea perquè vas a brillar molt.',
+        '/es': 'Refleja felicidad, satisfacción, vitalidad y éxito. No olvides ponerte gafas y Nivea porque vas a brillar mucho.',
+        '/en': "It reflects happiness, satisfaction, vitality and success. Don't forget to put on your glasses and Nivea cream because you're going to shine brightly.",
+      },
       image: ElSolImage,
     },
     {
-      text: `Ho diu el Tarot i ho deia Estellés: “No hi havia a València dos amants com vosaltres …” Entés?`,
+      text: {
+        '/': 'Ho diu el Tarot i ho deia Estellés: “No hi havia a València dos amants com vosaltres …” Entés?',
+        '/es': 'Lo dice el Tarot y lo decía Estellés: “No había en Valencia dos amantes como vosotros…” ¿Entiendes?',
+        '/en': 'The Tarot says it and Estellés said it: “There were no two lovers like you in Valencia …” Do you understand?',
+      },
       image: ElsAmantsImage,
     },
     {
-      text: `Representa l’energia femenina  quant a la capacitat de gestar i donar vida, per tant: “Tú que eres tan guapa y tan lista. Tú  te mereces un príncipe, un dentista…”.`,
+      text: {
+        '/': 'Representa l’energia femenina  quant a la capacitat de gestar i donar vida, per tant: “Tú que eres tan guapa y tan lista. Tú  te mereces un príncipe, un dentista…”.',
+        '/es': 'Representa la energía femenina en cuanto a la capacidad de gestar y dar vida, por tanto: “Tú que eras tan guapa y tan lista. Tú te mereces un príncipe, un dentista…”.',
+        '/en': 'It represents feminine energy in terms of the ability to conceive and give life, therefore: “You who are so beautiful and so smart. You deserve a prince, a dentist…”.',
+      },
       image: LaEmperadriuImage,
     },
     {
-      text: `Fa referència a coses i situacions que poden acabar de sobte i sense un previ avís. No és mala carta si penses en la hipoteca.`,
+      text: {
+        '/': 'Fa referència a coses i situacions que poden acabar de sobte i sense un previ avís. No és mala carta si penses en la hipoteca.',
+        '/es': 'Hace referencia a cosas y situaciones que pueden acabar de repente y sin un previo aviso. No es mala carta si piensas en la hipoteca.',
+        '/en': "It refers to things and situations that can end suddenly and without warning. It's not a bad card if you think about the mortgage.",
+      },
       image: LaForcaImage,
     },
     {
-      text: `Representa el dolor que ocultes o que t’oculten, malgrat que sigues brillant.  Posa’t ponxo, beu tequila, plora  i canta com fa Chavela:  “Pues desde que te fuiste no he tenido luz de luna…”`,
+      text: {
+        '/': 'Representa el dolor que ocultes o que t’oculten, malgrat que sigues brillant.  Posa’t ponxo, beu tequila, plora  i canta com fa Chavela:  “Pues desde que te fuiste no he tenido luz de luna…”',
+        '/es': 'Representa el dolor que ocultas o que te ocultan, aunque seas brillante. Ponte poncho, bebe tequila, llora y canta como hace Chavela: “Pues desde que te fuiste no he tenido luz de luna…”',
+        '/en': 'It represents the pain you hide or are hidden from you, despite the fact that you are brilliant. Put on a poncho, drink tequila, cry and sing like Chavela does: "So since you left I haven\'t had any moonlight..."',
+      },
       image: LaLLunaImage,
     },
     {
-      text: `Té  nom aterrador, però  no és mala carta. A quin sant! Indica canvi i transformació, per tant,  apaga el mòbil, carrega’l i reibicia’l. Potser obtingues més memòria RAM.`,
+      text: {
+        '/': 'Té  nom aterrador, però  no és mala carta. A quin sant! Indica canvi i transformació, per tant,  apaga el mòbil, carrega’l i reibicia’l. Potser obtingues més memòria RAM.',
+        '/es': 'Tiene nombre aterrador, pero no es mala carta. ¡A qué santo! Indica cambio y transformación, por tanto, apaga el móvil, cárgalo y reibícialo. Quizás obtengas más memoria RAM.',
+        '/en': "It sounds scary, but it's not a bad card. Who the hell! Indicates change and transformation, therefore, turn off the mobile, carry it and reset it. You will get more RAM memory.",
+      },
       image: LaMortImage,
     },
     {
-      text: `Marca la destrucció que altera l’equilibri i l’estabilitat. És com una DANA que et posa a prova per traure força davant  la incompetència política per poder avançar cap al futur. `,
+      text: {
+        '/': 'Marca la destrucció que altera l’equilibri i l’estabilitat. És com una DANA que et posa a prova per traure força davant  la incompetència política per poder avançar cap al futur.',
+        '/es': 'Marca la destrucción que altera el equilibrio y el establecimiento. És com una DANA que et posa a prova per traure força davant la incompetencia política per poder avançar cap al futur.',
+        '/en': "It marks the destruction that alters the balance and stability. It's like a DANA that poses a challenge to force political incompetence to be able to advance towards the future.",
+      },
       image: LaTorreImage,
     },
   ];
