@@ -96,9 +96,11 @@ function App() {
         <>
             <div className={ready ? 'hide' : 'show'}><Loading /></div>
             <div className={[ready ? 'show' : 'hidden', 'App-content'].join(' ')}>
-                <SocialMediaLinks />
-                {/* {isDescribing && <TryAgainCTA onClick={tryAgain} />} */}
-                <SelectLanguage />
+                <div className="header">
+                    <SocialMediaLinks />
+                    {/* {isDescribing && <TryAgainCTA onClick={tryAgain} />} */}
+                    <SelectLanguage />
+                </div>
                 <ul className={[
                     "card-list",
                     isDescribing ? 'is-describing' : null
@@ -160,7 +162,10 @@ function App() {
                 </ul>
                 {
                     isDescribing &&
-                    <div className="description">{message?.text?.[window.location.pathname]}</div>
+                    <div className="description">
+                        <h1>{message?.title?.[window.location.pathname]}</h1>
+                        <div>{message?.text?.[window.location.pathname]}</div>
+                    </div>
                 }
             </div>
             <Analytics />
