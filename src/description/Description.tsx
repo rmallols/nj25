@@ -3,7 +3,7 @@ import './Description.css';
 
 const tryAgainCTAText: { [key: string]: string; } = {
     '/': 'Internar-ho de nou!',
-    '/es': 'Interntarlo de nuevo!',
+    '/es': 'Intentarlo de nuevo!',
     '/en': 'Try again!',
 }
 
